@@ -1,6 +1,4 @@
-¡Perfecto! Aquí tenés un `README.md` completo para tu proyecto **FundMe**, y luego te explico lo que pasa cuando ejecutás `forge init`.
 
----
 
 ## 🏦 FundMe – Smart Contract Funding Project
 
