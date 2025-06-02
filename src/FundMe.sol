@@ -56,6 +56,29 @@ contract FundMe {
     // for loop
     // retirar los fondos
 
+    function cheaperWithdraw() public onlyOwner { 
+         
+         uint256 fundersLength = s_funders.length;
+         
+         for (
+            uint256 funderIndex = 0; funderIndex < fundersLength; funderIndex++
+        ) {
+            address funder = s_funders[funderIndex];
+            s_addressToAmount[funder] = 0;
+        }
+
+        s_funders = new address[](0);
+
+  
+        //call
+        (bool callSuccess, ) = payable(msg.sender).call{
+            value: address(this).balance
+        }("");
+        if(!callSuccess) { revert FundMe__WithdrawCallFailed(); }
+
+    }
+
+
     function withdraw() public onlyOwner{
         for (
             uint256 funderIndex = 0; funderIndex < s_funders.length; funderIndex++
